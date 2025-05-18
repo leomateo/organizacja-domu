@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Organizacja Domu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 1em; background: #f5f5f5; }
+        h1, h2 { text-align: center; }
+        .section { background: #fff; margin: 1em 0; padding: 1em; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+        .item { margin-bottom: 0.5em; }
+        .highlight { background: #ffeeba; padding: 0.2em 0.5em; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Organizacja Domu</h1>
+
+    <div id="dashboard" class="section">
+        <h2>Podsumowanie</h2>
+        <div id="dashboard-content"></div>
+    </div>
+
+    <div id="tasks" class="section">
+        <h2>Zadania na dziś i jutro</h2>
+        <div id="tasks-content"></div>
+    </div>
+
+    <div id="shopping" class="section">
+        <h2>Lista zakupów</h2>
+        <div id="shopping-content"></div>
+    </div>
+
+    <script>
+        fetch('data.json')
+            .then(res => res.json())
+            .then(data => {
+                const dash = document.getElementById('dashboard-content');
+                data.dashboard.forEach(d => {
+                    dash.innerHTML += `<div class="item"><strong>${d.Podsumowanie}:</strong> ${d.Wartość}</div>`;
+                });
+
+                const tasks = document.getElementById('tasks-content');
+                data.tasks_today.forEach(t => {
+                    tasks.innerHTML += `<div class="item">• ${t.Czynność} (do: <span class="highlight">${t['Planowana następna data']}</span>)</div>`;
+                });
+
+                const shopping = document.getElementById('shopping-content');
+                data.shopping_list.forEach(p => {
+                    shopping.innerHTML += `<div class="item">• ${p.Produkt} — ${p.Ilość} szt.</div>`;
+                });
+            });
+    </script>
+</body>
+</html>

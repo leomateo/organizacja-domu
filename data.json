@@ -1,0 +1,21 @@
+{
+  "dashboard": [
+    {
+      "Podsumowanie": "Produkty do kupienia",
+      "Wartość": 5
+    }
+  ],
+  "tasks_today": [
+    {
+      "Czynność": "Mycie podłóg",
+      "Planowana następna data": "2025-05-18"
+    }
+  ],
+  "shopping_list": [
+    {
+      "Produkt": "Papier toaletowy",
+      "Ilość": 1,
+      "Data Zakupu": "2025-04-01"
+    }
+  ]
+}
